@@ -1,0 +1,31 @@
+[project]
+name = "antivirals-supply-chain"
+version = "0.1.0"
+description = "AWS Supply Chain simulation for antiviral distribution optimization during pandemic scenarios"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.34.0",
+    "botocore[crt]>=1.34.0",
+    "pandas>=2.2.0",
+    "requests>=2.31.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.3.0",
+]
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]

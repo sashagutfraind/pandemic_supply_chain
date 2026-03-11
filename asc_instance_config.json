@@ -1,0 +1,17 @@
+{
+  "aws_region": "us-east-1",
+  "instance_name": "j7bym7y8",
+  "admin_user": {
+    "username": "scadmin3",
+    "email": "scadmin3@example.com",
+    "first_name": "Supply Chain",
+    "last_name": "Administrator",
+    "password": "u8h/$djv1r#0#LwW8Etx!RfkSN41X%v8-ADcT0U%?T%iblf^^7WYA1"
+  },
+  "tags": {
+    "Environment": "Production",
+    "ManagedBy": "Automation",
+    "Project": "AntiviralSupplyChain"
+  },
+  "instance_id": "304974fd-7d80-4344-872d-af5c0973b4e5"
+}
