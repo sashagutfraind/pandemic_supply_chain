@@ -8,6 +8,8 @@ Inspired by
 Singh B, Huang HC, Morton DP, Johnson GP, Gutfraind A, Galvani AP, Clements B, Meyers LA. Optimizing distribution of pandemic influenza antiviral drugs. Emerg Infect Dis. 2015 Feb;21(2):251-8. doi: 10.3201/eid2102.141024. PMID: 25625858; PMCID: PMC4313645.
 https://pmc.ncbi.nlm.nih.gov/articles/PMC4313645/
 
+![AWS Supply Chain Dashboard](supply_chain_screenshot.png)
+
 ## Quick Start
 
 ```bash
