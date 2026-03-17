@@ -13,23 +13,35 @@ https://pmc.ncbi.nlm.nih.gov/articles/PMC4313645/
 ## Quick Start
 
 ```bash
-# 0. Deploy instance
-python asc_1_deploy_helper.py
-
-# 1. Generate and upload data (creates flows, uploads to S3, auto-triggers ingestion)
-python asc_2_lake_builder.py --all
-
-# 2. Check flow status and data lake
-python asc_3_diagnostics.py --all
-
-# 3. (Optional) Send data via API
-python asc_4_send_events.py --all
-
-# 4. Run coverage analysis
-cd analysis-coverage
+# 0. Install dependencies with uv
 uv sync
+
+# 1. Deploy instance
+uv run asc_1_deploy_helper.py
+
+# 2. Generate and upload data (creates flows, uploads to S3, auto-triggers ingestion)
+uv run asc_2_lake_builder.py --all
+
+# 3. Check flow status and data lake
+uv run asc_3_diagnostics.py --all
+
+# 4. (Optional) Send data via API
+uv run asc_4_send_events.py --all
+
+# 5. Run coverage analysis
+cd analysis-coverage
+uv run coverage_1_gazeteer_zips.py
+uv run coverage_2_download_acs.py
+uv run coverage_3_current_stocks.py
 uv run coverage_4_compute_access.py
 ```
+
+## Prerequisites
+
+- Python 3.12+
+- [uv](https://docs.astral.sh/uv/) - Fast Python package installer
+- AWS credentials configured (via `aws configure` or environment variables)
+- AWS Supply Chain instance (created via step 1 above)
 
 ## Core Scripts
 
@@ -79,4 +91,47 @@ antivirals_supply_chain/
 - 1 Regional Hub (Seattle): 2,800 units
 - 2 Distribution Centers (Spokane, Tacoma): 1,050 units each
 - 4 Local Sites: 240-700 units each
+
+## Development
+
+### Running Individual Scripts
+
+All scripts can be run with `uv run`:
+
+```bash
+# Generate data only
+uv run asc_generate.py
+
+# Validate datasets
+uv run validate_datasets.py
+
+# Run specific coverage analysis steps
+uv run analysis-coverage/coverage_1_gazeteer_zips.py
+```
+
+### Installing uv
+
+If you don't have `uv` installed:
+
+```bash
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Or with pip
+pip install uv
+```
+
+### Dependencies
+
+All dependencies are managed in `pyproject.toml`:
+- `boto3` - AWS SDK
+- `pandas` - Data processing
+- `requests` - HTTP requests
+- `matplotlib` - Visualizations
+- `seaborn` - Statistical visualizations
+
+Run `uv sync` to install all dependencies.
 
